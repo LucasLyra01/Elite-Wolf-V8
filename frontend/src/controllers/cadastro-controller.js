@@ -2,7 +2,6 @@ const createUserModel = require('../models/cadastro-model');
 
 exports.cadastrarUsuario = (req, res) => {
     createUserModel.find((error, cadastros) => {
-
         if(error){
             console.log("Não foi possível fazer o cadastro");
             res.json({
@@ -12,19 +11,14 @@ exports.cadastrarUsuario = (req, res) => {
         }
 
         for (let i = 0; i < cadastros.length; i++) {
-
-            console.log(req);
-           
-            if(req.body.email == cadastros[i].email) {
+            if(req.body.email === cadastros[i].email) {
                 res.json({
                     status: 'erro',
                     message: `O email ${req.body.email} já está cadastrado`
                 });
+                return;
             }
-            return;
         }
-
-        console.log('entrei aqui');
 
         let cadastro = new createUserModel();
 
@@ -33,11 +27,13 @@ exports.cadastrarUsuario = (req, res) => {
         cadastro.email = req.body.email;
         cadastro.senha = req.body.senha;
 
+        console.log(cadastro.nome_pessoa);
+
         cadastro.save((error) => {
             if(error){
                 res.send({
                     status: 'erro',
-                    message: 'Não foi possível realizar o cadastro'
+                    message: error
                 });
             }else{
                 res.send({
@@ -122,20 +118,20 @@ exports.atualizarCadastros = (req, res) => {
 }
 
 exports.removerCadastro = (req, res) => {
-    let id_cadastro = req.body.id;
+    let id_cadastro = req.params.id;
 
     createUserModel.remove({
         _id: id_cadastro
     }, (error, cadastros) => {
         if(error){
             res.json({
-                status: 'error',
-                message: `Não foi possível deletar seu perfil, ${req.body.nome_pessoa}`
+                status: 'erro',
+                message: `Não foi possível remover seu cadastro, ${cadastros.nome_pessoa}`
             });
         }else{
             res.json({
-                status: 'ok',
-                message: 'O cadastro foi removido com sucesso'
+                status: 'ok', 
+                message: `Seu perfil foi deletado com sucesso`
             });
         }
     });

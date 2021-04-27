@@ -26,43 +26,21 @@ async function login({
   selectOptionMonth,
   selectOptionYear,
 }) {
-  alert(
-    "Username: " +
-      username +
-      "\n" +
-      "User: " +
-      user +
-      "\n" +
-      "Password: " +
-      password +
-      "\n" +
-      "Dia selecionado: " +
-      selectOption +
-      "\n" +
-      "Mês selecionado: " +
-      selectOptionMonth +
-      "\n" +
-      "Ano selecionado: " +
-      selectOptionYear
-  );
 
   const data_aniversario =
     selectOption + "/" + selectOptionMonth + "/" + selectOptionYear;
 
-  const data = {
-    "nome_pessoa": username,
-    "data_nascimento": data_aniversario,
-    "email": user,
-    "password": password,
+  const dados = {
+    nome_pessoa: username,
+    data_nascimento: data_aniversario,
+    email: user,
+    senha: password,
   };
 
-  console.log(data.data_nascimento);
-
-  axios.get('http://localhost:5000/api/cadastro/').then(function(response) {
-    console.log(response.data);
-  });
-
-  console.log('finalizando');
+  axios.post('http://localhost:5000/api/cadastro/', dados)
+    .then((response) => {
+      alert(response.data.message)
+    });
 
   return { error: "Usuário ou senha inválido" };
 }
