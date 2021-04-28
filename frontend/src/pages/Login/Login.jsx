@@ -18,10 +18,11 @@ function initialState() {
 
 function login({ user, password }) {
 
-  alert(user + password);
+  // alert(user + ' ' + password);
 
   axios.get('http://localhost:5000/api/cadastro')
     .then((response) => {
+      console.log(response.data);
       let dados = response.data.message;
       for (let i = 0; i < dados.length; i++) {
         if(dados[i].email == user && dados[i].senha == password){
@@ -73,7 +74,7 @@ const UserLogin = () => {
                 <img src="logo_lobo.svg" alt="Logo lobo"/>
         </div>
         
-        <div className={style.containerConteudo}>
+        <div className={style.conteinerConteudo}>
 
             <img src="logo_name.svg" alt="Logo ELite Wolf"/>
             <h1>Bem-vindo(a)</h1>
@@ -88,8 +89,13 @@ const UserLogin = () => {
                 {/* <Input id={'user'} type={'text'} title={'Digite seu nome'} name={'user'} value={'user'}/> */}
                 {/* <Input id={'password'} type={'password'} title={'Digite sua senha'} name={'password'}/> */}
 
-                <input id='user' type='text' placeholder='Digite seu email' name='user' onChange={onChange} value={values.user}/>
-                <input id='password' type='password' placeholder='Digite sua senha' name='password' onChange={onChange} value={values.password}/>
+                <div className={style.floatLabel}>
+                  <input id='user' type='text' placeholder='Digite seu email' name='user' onChange={onChange} value={values.user}/>
+                </div>
+
+                <div className={style.floatLabel}>
+                  <input id='password' type='password' placeholder='Digite sua senha' name='password' onChange={onChange} value={values.password}/>
+                </div>
 
                 <button type='submit'>Entrar</button>
 

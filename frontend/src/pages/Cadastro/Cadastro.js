@@ -110,13 +110,20 @@ const Cadastro = () => {
 
       <div className={style.containerConteudo}>
         <img src="logo_name.svg" alt="Logo ELite Wolf" />
-        <h1>Bem-vindo(a)</h1>
+        <h1>Cadastre-se</h1>
 
         <form onSubmit={onSubmit}>
           <button>
             <img src="icone_google.svg" alt="Google" />
             <span>Entre com sua conta do Google</span>
           </button>
+
+          <p className={style.textCadastro}>
+            Se não quiser usar sua conta do Google,
+            <br /> 
+            faça seu cadastro com seu melhor email
+          </p>
+
           <div className={style.floatLabel}>
             <input
             
@@ -128,7 +135,8 @@ const Cadastro = () => {
               value={values.username}
               />
 
-            </div>
+          </div>
+          {/* <br/> */}
           <div className={style.dropdown}>
             <div>
               <select
@@ -176,15 +184,17 @@ const Cadastro = () => {
               </select>
             </div>
           </div>
-
-          <input
-            id="user"
-            type="text"
-            placeholder="Digite seu email"
-            name="user"
-            onChange={onChange}
-            value={values.user}
-          />
+          <div className={style.floatLabel}>
+            <input
+              id="user"
+              type="text"
+              placeholder="Digite seu email"
+              name="user"
+              onChange={onChange}
+              value={values.user}
+              />
+          </div>
+          <div className={style.floatLabel}>
           <input
             id="password"
             type="password"
@@ -192,7 +202,8 @@ const Cadastro = () => {
             name="password"
             onChange={onChange}
             value={values.password}
-          />
+            />
+          </div>
 
           <button type="submit">Entrar</button>
         </form>
