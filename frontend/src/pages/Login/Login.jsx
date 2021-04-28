@@ -1,4 +1,6 @@
 import React, { useState, useContext } from 'react';
+import axios from 'axios';
+
 // import { useHistory } from 'react-router-dom';
 // import StoreContext from 'components/Store/Context';
 // import UIButton from 'components/UI/Button/Button';
@@ -16,11 +18,19 @@ function initialState() {
 
 function login({ user, password }) {
 
-  alert(user + ' ' + password);
+  alert(user + password);
 
-  if (user === 'admin' && password === 'admin') {
-    return { token: '1234' };
-  }
+  axios.get('http://localhost:5000/api/cadastro')
+    .then((response) => {
+      let dados = response.data.message;
+      for (let i = 0; i < dados.length; i++) {
+        if(dados[i].email == user && dados[i].senha == password){
+          console.log("logado com sucesso");
+          return;
+        }
+      }
+      return console.log("Dados incorretos");;
+    });
   return { error: 'Usuário ou senha inválido' };
 }
 
@@ -31,6 +41,9 @@ const UserLogin = () => {
 //   const history = useHistory();
 
   function onChange(event) {
+
+    console.log(event.target);
+
     const { value, name } = event.target;
 
     setValues({
@@ -71,6 +84,9 @@ const UserLogin = () => {
                     <img src="icone_google.svg" alt="Google"/>
                     <span>Entre com sua conta do Google</span> 
                 </button>
+
+                {/* <Input id={'user'} type={'text'} title={'Digite seu nome'} name={'user'} value={'user'}/> */}
+                {/* <Input id={'password'} type={'password'} title={'Digite sua senha'} name={'password'}/> */}
 
                 <input id='user' type='text' placeholder='Digite seu email' name='user' onChange={onChange} value={values.user}/>
                 <input id='password' type='password' placeholder='Digite sua senha' name='password' onChange={onChange} value={values.password}/>
