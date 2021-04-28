@@ -1,11 +1,7 @@
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
 
-// import { useHistory } from 'react-router-dom';
-// import StoreContext from 'components/Store/Context';
-// import UIButton from 'components/UI/Button/Button';
-
-// import './Login.css';
+import { loginToken, logout, isAuthenticated } from '../../components/auth/auth';
 
 import { Link } from 'react-router-dom'
 import { Input } from '../../components/Inputs';
@@ -20,13 +16,40 @@ function login({ user, password }) {
 
   // alert(user + ' ' + password);
 
+  // const TOKEN_KEY = localStorage;
+
+  // const isAuthenticated = () => localStorage.getItem(TOKEN_KEY);
+  
+  // console.log(isAuthenticated());
+
+  // const login_token = token_novo => {
+  //   localStorage.setItem(TOKEN_KEY, token_novo="asdasd");
+  // }
+
+  // login_token();
+
+  // console.log(isAuthenticated());
+
+  // const logout = () => {
+  //   localStorage.removeItem(TOKEN_KEY);
+  // };
+  // logout();
+
+  console.log(isAuthenticated());
+
+  // loginToken();
+
+  // console.log(isAuthenticated());
+
   axios.get('http://localhost:5000/api/cadastro')
     .then((response) => {
-      console.log(response.data);
       let dados = response.data.message;
       for (let i = 0; i < dados.length; i++) {
         if(dados[i].email == user && dados[i].senha == password){
           console.log("logado com sucesso");
+          loginToken(dados[i]._id);
+          console.log(dados[i]._id);
+          console.log(isAuthenticated());
           return;
         }
       }
@@ -37,9 +60,6 @@ function login({ user, password }) {
 
 const UserLogin = () => {
   const [values, setValues] = useState(initialState);
-//   const [error, setError] = useState(null);
-//   const { setToken } = useContext(StoreContext);
-//   const history = useHistory();
 
   function onChange(event) {
 

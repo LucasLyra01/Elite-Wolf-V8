@@ -11,7 +11,7 @@ const Routes = () => {
     return(
 
         <BrowserRouter>
-            <Route exact path='/' component={Google}/>
+            <Route exact path='/' component={Login}/>
             <Route path='/cadastro' component={Cadastro}/>
         
         </BrowserRouter>
