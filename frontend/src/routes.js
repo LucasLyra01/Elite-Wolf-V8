@@ -1,12 +1,13 @@
 import React from 'react';
-import { BrowserRouter, Route, Redirect} from 'react-router-dom';
+import { BrowserRouter, Route, Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { isAuthenticated } from '../src/components/auth/auth';
 
 import Login from './pages/Login/Login';
 import Cadastro from './pages/Cadastro/Cadastro';
 import Dashboard from './pages/Dashboard/Dashboard';
 
-import Google from './pages/testegoogle/google';
+import Google from './components/ButtonGoogle/Google';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
 
@@ -22,8 +23,6 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 
 const Routes = () => {
     
-    console.log(isAuthenticated());
-
     return(
 
         <BrowserRouter>
@@ -31,6 +30,7 @@ const Routes = () => {
             <Route exact path='/' component={Login}/>
             <Route path='/cadastro' component={Cadastro}/>
             <PrivateRoute path='/dashboard' component={Dashboard}/>
+            <Route path="/google" component={Google}/>
         
         </BrowserRouter>
     );

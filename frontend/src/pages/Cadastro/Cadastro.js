@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useHistory } from 'react-router-dom';
+import Google from '../../components/ButtonGoogle/Google';
 import axios from 'axios';
 
 import style from "./Cadastro.module.scss";
@@ -113,10 +114,14 @@ const Cadastro = () => {
         <h1>Cadastre-se</h1>
 
         <form onSubmit={onSubmit}>
-          <button>
+         
+         <Google id={'cadastro'} title={"Cadastre-se com o Google"}/>
+         
+         
+          {/* <button>
             <img src="icone_google.svg" alt="Google" />
             <span>Entre com sua conta do Google</span>
-          </button>
+          </button> */}
 
           <p className={style.textCadastro}>
             Se não quiser usar sua conta do Google,

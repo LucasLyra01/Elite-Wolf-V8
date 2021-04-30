@@ -79,6 +79,24 @@ p{
     margin-top: 1rem;
 }
 
+.buttonGoogle{
+
+    border-radius: 50px;
+
+    width: 24rem;
+    height: 3.5rem;
+    background-color: var(--dark-blue);
+    color: var(--white);
+    border-radius: 10px;
+
+    transition: filter 0.2s;
+
+    &:hover{
+        filter: brightness(0.8);
+    }
+
+}
+
 .link{
     font-weight: 600;
     font-family: Nunito, sans-serif;

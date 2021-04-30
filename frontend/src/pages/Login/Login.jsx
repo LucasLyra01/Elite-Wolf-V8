@@ -2,14 +2,13 @@ import React, { useState, useContext } from 'react';
 import { Route, Redirect, BrowserRouter, useHistory } from 'react-router-dom';
 import axios from 'axios';
 
-import { loginToken, logout, isAuthenticated } from '../../components/auth/auth';
+import { isAuthenticated, loginToken } from '../../components/auth/auth';
 
 import { Link } from 'react-router-dom'
 
 import style from './Login.module.scss'
 
-import Cadastro from '../Cadastro/Cadastro';
-
+import Google from '../../components/ButtonGoogle/Google';
 
 
 function initialState() {
@@ -18,8 +17,13 @@ function initialState() {
 
 
 const UserLogin = () => {
-  
+
   let history = useHistory();
+
+  if(isAuthenticated()){
+    history.push('/dashboard')
+  }
+
 
   function Login({ user, password }) {
   
@@ -73,10 +77,14 @@ const UserLogin = () => {
 
             <form onSubmit={onSubmit}>
 
-                <button>
+              <Google id={"login"} title={"Entre com o Google"}/>
+
+
+
+                {/* <button>
                     <img src="icone_google.svg" alt="Google"/>
                     <span>Entre com sua conta do Google</span> 
-                </button>
+                </button> */}
 
                 {/* <Input id={'user'} type={'text'} title={'Digite seu nome'} name={'user'} value={'user'}/> */}
                 {/* <Input id={'password'} type={'password'} title={'Digite sua senha'} name={'password'}/> */}
