@@ -1,9 +1,6 @@
 import React, { useState, useContext } from "react";
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-// const axios = require('axios');
-
-import { Link } from "react-router-dom";
-import { Input } from "../../components/Inputs";
 
 import style from "./Cadastro.module.scss";
 
@@ -18,34 +15,37 @@ function initialState() {
   };
 }
 
-async function login({
-  username,
-  user,
-  password,
-  selectOption,
-  selectOptionMonth,
-  selectOptionYear,
-}) {
 
-  const data_aniversario =
-    selectOption + "/" + selectOptionMonth + "/" + selectOptionYear;
-
-  const dados = {
-    nome_pessoa: username,
-    data_nascimento: data_aniversario,
-    email: user,
-    senha: password,
-  };
-
-  axios.post('http://localhost:5000/api/cadastro/', dados)
-    .then((response) => {
-      alert(response.data.message)
-    });
-
-  return { error: "Usuário ou senha inválido" };
-}
 
 const Cadastro = () => {
+
+  let history = useHistory();
+
+  function login({ username, user, password, selectOption, selectOptionMonth, selectOptionYear }) {
+  
+    const data_aniversario =
+      selectOption + "/" + selectOptionMonth + "/" + selectOptionYear;
+  
+    const dados = {
+      nome_pessoa: username,
+      data_nascimento: data_aniversario,
+      email: user,
+      senha: password,
+    };
+  
+    axios.post('http://localhost:5000/api/cadastro/', dados)
+      .then((response) => {
+        console.log(response.data.message);
+  
+        if(response.data.status == 'ok'){
+          alert(response.data.message);
+          history.push('/');
+        }
+      });
+  
+    return { error: "Usuário ou senha inválido" };
+  }
+
   const [values, setValues] = useState(initialState);
 
   function onChange(event) {

@@ -7,9 +7,10 @@ const data = {
     "senha": "teste123"
 }
 
-axios.post('http://localhost:5000/api/cadastro', data).then(function(response) {
-    console.log(response.data);
+axios.get('http://localhost:5000/api/cadastro').then((response) => {
+    console.log(response);
 });
+
 
 // axios.get('http://localhost:5000/api/cadastro/', data).then(function(response) {
 //     console.log(response.data);
