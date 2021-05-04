@@ -1,16 +1,31 @@
 import styles from './styles.module.scss';
-import { useHistory } from 'react-router-dom';
-import { isAuthenticated, logout } from '../auth/auth';
+import { useHistory, useLocation } from 'react-router-dom';
+import { logout } from '../auth/auth';
 
 export function Sidebar(){
 
     let history = useHistory();
+    const { pathname } = useLocation();
+
+    function handleDashboard(){
+        history.push('/dashboard');
+    }
+
+    function handleProfile(){
+        history.push('/profile') 
+
+    }
+
+    function handleSecurity(){
+        history.push('/security') 
+    }
     
     function sair(){
         console.log("Saindo da aplicação");
         logout();
         history.push('/');
     }
+
 
     return(
         <div className={styles.container}>
@@ -20,22 +35,24 @@ export function Sidebar(){
             
             <div className={styles.navigation}>
                 <button 
-                className={`${styles.btnNavigation} ${styles.isActive}`}
-                // onClick={() => push('/')}
+                className={
+                    `${styles.btnNavigation}  ${pathname === '/dashboard' && styles.isActive }`}
+                onClick={handleDashboard}
                 >
                     <img src="/icon_dashboard.svg" alt="dashboard"/>
                 </button>
 
+
                 <button 
-                className={`${styles.btnNavigation} ${styles.isActive}`}
-                // onClick={() => push('/profile')}
+                className={`${styles.btnNavigation} ${pathname === ('/profile') && styles.isActive } `}
+                onClick={handleProfile}
                 >
                     <img src="/icon_user.svg" alt="Usuário"/>
                 </button>
 
                 <button 
-                className={`${styles.btnNavigation} `}
-                // onClick={() => push('/security')}
+                className={`${styles.btnNavigation} ${pathname === '/security' && styles.isActive } `}
+                onClick={handleSecurity}
                 >
                     <img src="/icon_security.svg" alt="Segurança"/>
                 </button>

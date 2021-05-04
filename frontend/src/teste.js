@@ -7,8 +7,8 @@ const data = {
     "senha": "teste123"
 }
 
-axios.get('http://localhost:5000/api/cadastro').then((response) => {
-    console.log(response);
+axios.put('http://localhost:5000/api/cadastro/60919607c57dcd308c1a5b0b', data).then((response) => {
+    console.log(response.data.message);
 });
 
 

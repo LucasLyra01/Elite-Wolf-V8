@@ -1,26 +1,20 @@
 import React from 'react';
-import GoogleLogin from 'react-google-login';
-
 import { Sidebar } from '../../components/Sidebar/index';
 
+import style from './Dashboard.module.scss';
+
 const Dashboard = () => {
-
-    function responseGoogle(){
-        console.log("object");
-    }
-
     return(
         <div>
             <div>
-                <Sidebar />
+                <Sidebar text={'dashboard'}/>
             </div>
-            <div>
-
+            <div className={style.container}>
+                <h1>Dashboard</h1>
             </div>
         </div>
-        
-    )
 
+    )
 }
 
 export default Dashboard;

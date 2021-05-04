@@ -56,7 +56,7 @@ const Google = (props) => {
                         }else{
                             alert(cadastroGoogle.data.message);
                         }
-                    })
+                    });
                 }
             }
         }

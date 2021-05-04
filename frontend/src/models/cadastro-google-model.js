@@ -5,6 +5,10 @@ const cadastroGoogleSchema = mongoose.Schema({
         type: mongoose.Schema.Types.String,
         required: true
     },
+    sobrenome: {
+        type: mongoose.Schema.Types.String,
+        required: false
+    },
     email: {
         type: mongoose.Schema.Types.String,
         required: true

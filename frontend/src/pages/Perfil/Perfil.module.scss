@@ -1,0 +1,61 @@
+.container{
+    margin-left: 7rem;
+    height: 100vh;
+    position: relative;
+
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    
+    display: flex;
+    flex: 1;
+
+    border: 1px solid red;
+    
+    button {
+        margin: 10px;
+        padding: 0;
+    }
+}
+
+.floatLabel{
+    display: flex;
+    flex-direction: column;
+    min-width: 350px;
+    
+    position: relative;
+    
+    margin-top: 0.625rem;
+    
+    border: 1px solid red;
+    .upper{
+        text-transform: capitalize;
+    }
+    label {
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-size: 1.5rem;
+        width: 24rem;
+        height: 4.11rem;
+        padding: 12px 16px 0 10px;
+        outline: 0;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        background: #fff;
+        color: #000;
+        text-align: center;
+    }
+}
+
+.botoes{
+    display: flex;
+    .editar{
+        background-color: blue;
+        color: white;
+    }
+    .salvar{
+        background-color: green;
+    }
+    .cancelar{
+        background-color: black;
+    }
+}

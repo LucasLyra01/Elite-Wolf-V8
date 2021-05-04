@@ -18,6 +18,8 @@ function initialState() {
 
 const UserLogin = () => {
 
+  const [token, setToken] = useState('');
+
   let history = useHistory();
 
   if(isAuthenticated()){
@@ -34,6 +36,8 @@ const UserLogin = () => {
           if(dados[i].email == user && dados[i].senha == password){
             console.log("logado com sucesso");
             loginToken(dados[i]._id);
+            setToken(dados[i]._id);
+            // export default token;
             history.push('/dashboard');
             return;
           }
@@ -79,22 +83,12 @@ const UserLogin = () => {
 
               <Google id={"login"} title={"Entre com o Google"}/>
 
-
-
-                {/* <button>
-                    <img src="icone_google.svg" alt="Google"/>
-                    <span>Entre com sua conta do Google</span> 
-                </button> */}
-
-                {/* <Input id={'user'} type={'text'} title={'Digite seu nome'} name={'user'} value={'user'}/> */}
-                {/* <Input id={'password'} type={'password'} title={'Digite sua senha'} name={'password'}/> */}
-
                 <div className={style.floatLabel}>
-                  <input id='user' type='text' placeholder='Digite seu email' name='user' onChange={onChange} value={values.user}/>
+                  <input id='user' type='text' placeholder='Digite seu email' name='user' onChange={onChange} value={values.user} disabled=""/>
                 </div>
 
                 <div className={style.floatLabel}>
-                  <input id='password' type='password' placeholder='Digite sua senha' name='password' onChange={onChange} value={values.password}/>
+                  <input id='password' type='password' placeholder='Digite sua senha' name='password' onChange={onChange} value={values.password} disabled=""/>
                 </div>
                 
                 {/* <Link to={"/dashboard"}>

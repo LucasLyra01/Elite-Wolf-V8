@@ -16,28 +16,22 @@ function initialState() {
   };
 }
 
-
-
 const Cadastro = () => {
-
   let history = useHistory();
-
-  function login({ username, user, password, selectOption, selectOptionMonth, selectOptionYear }) {
   
+  function Login({ username, user, password, selectOption, selectOptionMonth, selectOptionYear }) {
     const data_aniversario =
       selectOption + "/" + selectOptionMonth + "/" + selectOptionYear;
-  
     const dados = {
       nome_pessoa: username,
       data_nascimento: data_aniversario,
       email: user,
       senha: password,
     };
-  
+
     axios.post('http://localhost:5000/api/cadastro/', dados)
       .then((response) => {
         console.log(response.data.message);
-  
         if(response.data.status == 'ok'){
           alert(response.data.message);
           history.push('/');
@@ -45,7 +39,7 @@ const Cadastro = () => {
       });
   
     return { error: "Usuário ou senha inválido" };
-  }
+  };
 
   const [values, setValues] = useState(initialState);
 
@@ -56,13 +50,13 @@ const Cadastro = () => {
       ...values,
       [name]: value,
     });
-  }
+  };
 
   function onSubmit(event) {
     event.preventDefault();
 
-    login(values);
-  }
+    Login(values);
+  };
 
   const ArrayData = {
     ArrayMeses: [
@@ -89,7 +83,7 @@ const Cadastro = () => {
     }
 
     return dias;
-  }
+  };
 
   function funcAnos() {
     const anos = [];
@@ -99,30 +93,18 @@ const Cadastro = () => {
     }
 
     anos.reverse();
-
     return anos;
-  }
-
+  };
   return (
     <div className={style.container}>
       <div className={style.containerLogo}>
         <img src="logo_lobo.svg" alt="Logo lobo" />
       </div>
-
       <div className={style.containerConteudo}>
         <img src="logo_name.svg" alt="Logo ELite Wolf" />
         <h1>Cadastre-se</h1>
-
         <form onSubmit={onSubmit}>
-         
          <Google id={'cadastro'} title={"Cadastre-se com o Google"}/>
-         
-         
-          {/* <button>
-            <img src="icone_google.svg" alt="Google" />
-            <span>Entre com sua conta do Google</span>
-          </button> */}
-
           <p className={style.textCadastro}>
             Se não quiser usar sua conta do Google,
             <br /> 
@@ -210,7 +192,8 @@ const Cadastro = () => {
             />
           </div>
 
-          <button type="submit">Entrar</button>
+          <button type="submit">Cadastrar</button>
+          
         </form>
       </div>
     </div>

@@ -103,7 +103,7 @@ exports.atualizarCadastros = (req, res) => {
                 if(error){
                     res.json({
                         status: 'erro',
-                        message: `Houve um erro ao atualizar o cadastro com o id ${id_cadastro}`
+                        message: `Houve um erro ao atualizar o cadastro com o id ${id_cadastro} ${error}`
                     });
                 }else{
                     res.json({

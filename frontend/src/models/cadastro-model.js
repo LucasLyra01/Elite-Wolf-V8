@@ -5,6 +5,10 @@ const cadastroSchema = mongoose.Schema({
         type: mongoose.Schema.Types.String,
         required: true
     },
+    sobrenome: {
+        type: mongoose.Schema.Types.String,
+        required: false
+    },
     data_nascimento: {
         type: mongoose.Schema.Types.String,
         required: false

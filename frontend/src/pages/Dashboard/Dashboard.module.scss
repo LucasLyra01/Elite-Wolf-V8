@@ -1,0 +1,17 @@
+.container{
+    margin-left: 7rem;
+    height: 100vh;
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    flex: 1;
+
+    // display: grid;
+    // grid-template-columns: 1fr 1fr;
+    // gap: 3.125rem;
+    align-items: center;
+
+    border: 1px solid red;
+}

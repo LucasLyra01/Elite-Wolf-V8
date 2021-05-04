@@ -33,12 +33,6 @@ body, input, button{
     font: 400 1rem Nunito, sans-serif;
 }
 
-/* h1, h2 {
-    font-weight: 600;
-    font-family: Viga sans-serif;
-    color: var(--white);
-} */
-
 h1{
     font-size: 2rem;
     font-family: Nunito, sans-serif;

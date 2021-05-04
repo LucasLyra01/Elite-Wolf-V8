@@ -23,7 +23,7 @@ app.use('/api/cadastro', cadastroRoutes);
 app.use('/api/cadastrogoogle', cadastroGoogleRoutes);
 
 
-mongoose.connect('mongodb://root:root@localhost:27017/projeto1?authSource=admin', 
+mongoose.connect('mongodb://root:root@localhost:27017/projeto1?authSource=admin',
     {
         useNewUrlParser: true, 
         useUnifiedTopology: true
